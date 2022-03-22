@@ -1,0 +1,8 @@
+{
+  "name": "Datagen-connect",
+  "config": {
+    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+    "kafka.topic": "topic-users",
+    "quickstart": "users"
+  }
+}

@@ -1,0 +1,24 @@
+Kafka Conect 
+
+
+
+Iniciar os serviços no docker
+1-docker-compose up -d
+
+2-Abrir o controlol center 
+localhost:9091
+
+2-No control center 
+clicar em connect>
+Será exibido All Connect Clusters 
+Se não houver nenhuma conecção criada, clique em connect-default-->Add connector
+Será exibido o browse com todos conectores padrão, selecione o desejado.
+Iremos selecionar o DatagenConnector.I´ra aparecer varías propriedades para ser preenchida seus valores.
+Iremos informas apoenas as obrigátorias:
+
+name: dtagen-connct
+kafka.topic: topics-users
+quickstart:users
+
+Clicque em continue, ele irá mostrar todas configurtações do seu setup.Nesta página será possível fazer o download das configuraç~eos em json e das propriedades.
+Clique em Launch

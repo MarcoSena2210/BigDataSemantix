@@ -1,0 +1,286 @@
+Tópicos Comandos Básicos
+
+Listar tópicos
+kafka topics bootstrap server localhost:9092 list
+ou
+kafka topics zookeeper localhost:2181 list
+
+root@broker:/# kafka-topics --bootstrap-server localhost:9092 --list
+__confluent.support.metrics
+__consumer_offsets
+__transaction_state
+_confluent-command
+_confluent-controlcenter-5-5-2-1-AlertHistoryStore-changelog
+_confluent-controlcenter-5-5-2-1-AlertHistoryStore-repartition
+_confluent-controlcenter-5-5-2-1-Group-ONE_MINUTE-changelog
+_confluent-controlcenter-5-5-2-1-Group-ONE_MINUTE-repartition
+_confluent-controlcenter-5-5-2-1-Group-THREE_HOURS-changelog
+_confluent-controlcenter-5-5-2-1-Group-THREE_HOURS-repartition
+_confluent-controlcenter-5-5-2-1-KSTREAM-OUTEROTHER-0000000106-store-changelog
+_confluent-controlcenter-5-5-2-1-KSTREAM-OUTEROTHER-0000000106-store-repartition
+_confluent-controlcenter-5-5-2-1-KSTREAM-OUTERTHIS-0000000105-store-changelog
+_confluent-controlcenter-5-5-2-1-KSTREAM-OUTERTHIS-0000000105-store-repartition
+_confluent-controlcenter-5-5-2-1-MetricsAggregateStore-changelog
+_confluent-controlcenter-5-5-2-1-MetricsAggregateStore-repartition
+_confluent-controlcenter-5-5-2-1-MonitoringMessageAggregatorWindows-ONE_MINUTE-changelog
+_confluent-controlcenter-5-5-2-1-MonitoringMessageAggregatorWindows-ONE_MINUTE-repartition
+_confluent-controlcenter-5-5-2-1-MonitoringMessageAggregatorWindows-THREE_HOURS-changelog
+_confluent-controlcenter-5-5-2-1-MonitoringMessageAggregatorWindows-THREE_HOURS-repartition
+_confluent-controlcenter-5-5-2-1-MonitoringStream-ONE_MINUTE-changelog
+_confluent-controlcenter-5-5-2-1-MonitoringStream-ONE_MINUTE-repartition
+_confluent-controlcenter-5-5-2-1-MonitoringStream-THREE_HOURS-changelog
+_confluent-controlcenter-5-5-2-1-MonitoringStream-THREE_HOURS-repartition
+_confluent-controlcenter-5-5-2-1-MonitoringTriggerStore-changelog
+_confluent-controlcenter-5-5-2-1-MonitoringTriggerStore-repartition
+_confluent-controlcenter-5-5-2-1-MonitoringVerifierStore-changelog
+_confluent-controlcenter-5-5-2-1-MonitoringVerifierStore-repartition
+_confluent-controlcenter-5-5-2-1-TriggerActionsStore-changelog
+_confluent-controlcenter-5-5-2-1-TriggerActionsStore-repartition
+_confluent-controlcenter-5-5-2-1-TriggerEventsStore-changelog
+_confluent-controlcenter-5-5-2-1-TriggerEventsStore-repartition
+_confluent-controlcenter-5-5-2-1-actual-group-consumption-rekey
+_confluent-controlcenter-5-5-2-1-aggregate-topic-partition-store-changelog
+_confluent-controlcenter-5-5-2-1-aggregate-topic-partition-store-repartition
+_confluent-controlcenter-5-5-2-1-aggregatedTopicPartitionTableWindows-ONE_MINUTE-changelog
+_confluent-controlcenter-5-5-2-1-aggregatedTopicPartitionTableWindows-ONE_MINUTE-repartition
+_confluent-controlcenter-5-5-2-1-aggregatedTopicPartitionTableWindows-THREE_HOURS-changelog
+_confluent-controlcenter-5-5-2-1-aggregatedTopicPartitionTableWindows-THREE_HOURS-repartition
+_confluent-controlcenter-5-5-2-1-cluster-rekey
+_confluent-controlcenter-5-5-2-1-expected-group-consumption-rekey
+_confluent-controlcenter-5-5-2-1-group-aggregate-store-ONE_MINUTE-changelog
+_confluent-controlcenter-5-5-2-1-group-aggregate-store-ONE_MINUTE-repartition
+_confluent-controlcenter-5-5-2-1-group-aggregate-store-THREE_HOURS-changelog
+_confluent-controlcenter-5-5-2-1-group-aggregate-store-THREE_HOURS-repartition
+_confluent-controlcenter-5-5-2-1-group-stream-extension-rekey
+_confluent-controlcenter-5-5-2-1-metrics-trigger-measurement-rekey
+_confluent-controlcenter-5-5-2-1-monitoring-aggregate-rekey-store-changelog
+_confluent-controlcenter-5-5-2-1-monitoring-aggregate-rekey-store-repartition
+_confluent-controlcenter-5-5-2-1-monitoring-message-rekey-store
+_confluent-controlcenter-5-5-2-1-monitoring-trigger-event-rekey
+_confluent-ksql-default__command_topic
+_confluent-license
+_confluent-metrics
+_confluent-monitoring
+_schemas
+default_ksql_processing_log
+docker-connect-configs
+docker-connect-offsets
+docker-connect-status
+root@broker:/#
+
+
+o Criar tópico
+> kafka-topics --bootstrap-server localhost:9092 --topic <nomeTópico> --create \--partitions 3 --replication factor 1
+
+Exemplo:
+root@broker:/# kafka-topics --bootstrap-server localhost:9092 --topic msg-cli --create \--partitions 3 --replication-factor 1
+Created topic msg-cli.
+root@broker:/#
+
+o Descrever tópico:
+kafka-topics --bootstrap-server localhost:9092 --topic <nomeTópico> describe
+
+Exemplo:
+root@broker:/# kafka-topics --bootstrap-server localhost:9092 --topic msg-cli describe
+Command must include exactly one action: --list, --describe, --create, --alter or --delete
+Option                                   Description
+------                                   -----------
+--alter                                  Alter the number of partitions,
+                                           replica assignment, and/or
+                                           configuration for the topic.
+--at-min-isr-partitions                  if set when describing topics, only
+                                           show partitions whose isr count is
+                                           equal to the configured minimum. Not
+                                           supported with the --zookeeper
+                                           option.
+--bootstrap-server <String: server to    REQUIRED: The Kafka server to connect
+  connect to>                              to. In case of providing this, a
+                                           direct Zookeeper connection won't be
+                                           required.
+--command-config <String: command        Property file containing configs to be
+  config property file>                    passed to Admin Client. This is used
+                                           only with --bootstrap-server option
+                                           for describing and altering broker
+                                           configs.
+--config <String: name=value>            A topic configuration override for the
+                                           topic being created or altered.The
+                                           following is a list of valid
+                                           configurations:
+                                                cleanup.policy
+                                                compression.type
+                                                confluent.append.record.interceptor.
+                                           classes
+                                                confluent.key.schema.validation
+                                                confluent.key.subject.name.strategy
+                                                confluent.placement.constraints
+                                                confluent.prefer.tier.fetch.ms
+                                                confluent.segment.speculative.
+                                           prefetch.enable
+                                                confluent.tier.enable
+                                                confluent.tier.local.hotset.bytes
+                                                confluent.tier.local.hotset.ms
+                                                confluent.tier.segment.hotset.roll.
+                                           min.bytes
+                                                confluent.value.schema.validation
+                                                confluent.value.subject.name.strategy
+                                                delete.retention.ms
+                                                file.delete.delay.ms
+                                                flush.messages
+                                                flush.ms
+                                                follower.replication.throttled.
+                                           replicas
+                                                index.interval.bytes
+                                                leader.replication.throttled.replicas
+                                                max.compaction.lag.ms
+                                                max.message.bytes
+                                                message.downconversion.enable
+                                                message.format.version
+                                                message.timestamp.difference.max.ms
+                                                message.timestamp.type
+                                                min.cleanable.dirty.ratio
+                                                min.compaction.lag.ms
+                                                min.insync.replicas
+                                                preallocate
+                                                retention.bytes
+                                                retention.ms
+                                                segment.bytes
+                                                segment.index.bytes
+                                                segment.jitter.ms
+                                                segment.ms
+                                                unclean.leader.election.enable
+                                         See the Kafka documentation for full
+                                           details on the topic configs.It is
+                                           supported only in combination with --
+                                           create if --bootstrap-server option
+                                           is used.
+--create                                 Create a new topic.
+--delete                                 Delete a topic
+--delete-config <String: name>           A topic configuration override to be
+                                           removed for an existing topic (see
+                                           the list of configurations under the
+                                           --config option). Not supported with
+                                           the --bootstrap-server option.
+--describe                               List details for the given topics.
+--disable-rack-aware                     Disable rack aware replica assignment
+--exclude-internal                       exclude internal topics when running
+                                           list or describe command. The
+                                           internal topics will be listed by
+                                           default
+--force                                  Suppress console prompts
+--help                                   Print usage information.
+--if-exists                              if set when altering or deleting or
+                                           describing topics, the action will
+                                           only execute if the topic exists.
+                                           Not supported with the --bootstrap-
+                                           server option.
+--if-not-exists                          if set when creating topics, the
+                                           action will only execute if the
+                                           topic does not already exist. Not
+                                           supported with the --bootstrap-
+                                           server option.
+--invalid-replica-placement-partitions   if set when describing topics, only
+                                           show partitions whose placement
+                                           doesn't adhere to the replica
+                                           placement constraints. Not supported
+                                           with the --zookeeper option.
+--list                                   List all available topics.
+--partitions <Integer: # of partitions>  The number of partitions for the topic
+                                           being created or altered (WARNING:
+                                           If partitions are increased for a
+                                           topic that has a key, the partition
+                                           logic or ordering of the messages
+                                           will be affected). If not supplied
+                                           for create, defaults to the cluster
+                                           default.
+--replica-assignment <String:            A list of manual partition-to-broker
+  broker_id_for_part1_replica1 :           assignments for the topic being
+  broker_id_for_part1_replica2 ,           created or altered.
+  broker_id_for_part2_replica1 :
+  broker_id_for_part2_replica2 , ...>
+--replica-placement <String: Replica     This configuration is a JSON object
+  placement JSON file path.>               that controls the set of brokers
+                                           (replicas) which will always be
+                                           allowed to join the ISR. And the set
+                                           of brokers (observers) which are not
+                                           allowed to join the ISR. The format
+                                           of JSON is:
+                                         {
+                                           "version": 1,
+                                           "replicas": [
+                                             {
+                                               "count": 2,
+                                               "constraints": {"rack": "east-1"}
+                                             },
+                                             {
+                                               "count": 1,
+                                               "constraints": {"rack": "east-2"}
+                                             }
+                                           ],
+                                           "observers":[
+                                             {
+                                               "count": 1,
+                                               "constraints": {"rack": "west-1"}
+                                             }
+                                           ]
+                                         }
+--replication-factor <Integer:           The replication factor for each
+  replication factor>                      partition in the topic being
+                                           created. If not supplied, defaults
+                                           to the cluster default.
+--topic <String: topic>                  The topic to create, alter, describe
+                                           or delete. It also accepts a regular
+                                           expression, except for --create
+                                           option. Put topic name in double
+                                           quotes and use the '\' prefix to
+                                           escape regular expression symbols; e.
+                                           g. "test\.topic".
+--topics-with-overrides                  if set when describing topics, only
+                                           show topics that have overridden
+                                           configs
+--unavailable-partitions                 if set when describing topics, only
+                                           show partitions whose leader is not
+                                           available
+--under-min-isr-partitions               if set when describing topics, only
+                                           show partitions whose isr count is
+                                           less than the configured minimum.
+                                           Not supported with the --zookeeper
+                                           option.
+--under-replicated-partitions            if set when describing topics, only
+                                           show under replicated partitions
+--version                                Display Kafka version.
+--zookeeper <String: hosts>              DEPRECATED, The connection string for
+                                           the zookeeper connection in the form
+                                           host:port. Multiple hosts can be
+                                           given to allow fail-over.
+root@broker:/#
+
+o Deletar tópico
+kafka-topics --bootstrap-server localhost:9092 --topic <nomeTópico> delete
+
+
+
+
+** Produtor Console
+o Enviar dados
+kafka-console-producer --broker-list localhost:9092 --topic <nomeTópico>
+
+exemplo:
+kafka-console-producer --broker-list localhost:9092 --topic msg-cli 
+Msg 1
+Msg 2
+
+
+o Enviar dados para todos reconhecerem ( Leader e ISR)
+kafka-console-producer --broker-list localhost :9092 --topic <nomeTópico> --producer-property acks=all
+
+
+** Consumidor Console
+
+o Receber mensagens em tempo real
+kafka-console-consumer --bootstrap-server localhost:9092 --topic <nomeTópico>
+
+o Receber mensagens desde a criação do tópico
+kafka-console-consumer --bootstrap-server localhost:9092 --topic <nomeTópico> from beginning
+
+o Criar grupo de consumidores
+kafka-console-consumer --bootstrap-server localhost:9092 --topic <nomeTópico> group <nomeGrupo>
