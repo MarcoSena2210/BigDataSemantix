@@ -1,6 +1,6 @@
-# instalação do elatic no docker
+# instalação do elastic no docker
 
-* Criando uma pasta chamada elatic. 
+* Criando uma pasta chamada elastic. 
 marco@DESKTOP-G2455QH:~/treinamentos$ <code> mkdir elastic </code>
 
 
@@ -21,7 +21,7 @@ marco@DESKTOP-G2455QH:~/treinamentos$<code> cd elastic  </code>
 * 1ª) Fazendo o download do elasticsearch
 
 
-marco@DESKTOP-G2455QH:~/treinamentos/,elastic$ <code> docker pull docker.elastic.co/elasticsearch/elasticsearch:7.9.2-amd64 </code>
+marco@DESKTOP-G2455QH:~/treinamentos/elastic$ <code> docker pull docker.elastic.co/elasticsearch/elasticsearch:7.9.2-amd64 </code>
 
 Retorna:
 
@@ -115,10 +115,12 @@ DESKTOP-G2455QH:/mnt/host/c/Windows/system32# </prev>
 
 * 5º) Baixar o diretório elastic na guia arquivos da plataforma
 
-Dica: Foi baixado para o ambiente windows.Vamos digitar \\wsl$ na barra iniciar do windows 10.Abrirá o explorer no ambiente linux. 
-Vamos clicar na pasta: Ubuntu-20.04\home\marco\treinamentos\elastic
+Dica: Foi baixado da plataforma Academy Semantix para o ambiente windows.
+Vamos digitar \\wsl$ na barra iniciar do windows 10.Abrirá o explorer no ambiente linux. 
 
-(\\wsl$\Ubuntu-20.04\home\marco\treinamentos\elastic)
+Vamos clicar na pasta: Ubuntu-20.04\home\marco\treinamentos\elastic
+* local onde deve ficar os arquivos do elastic:(
+\\wsl$\Ubuntu-20.04\home\marco\treinamentos\elastic)
 
 * Copiar para pasta acima (CTRL C e CTRL V) do ambiente windos para o ambiente Linux.
 
@@ -210,6 +212,18 @@ docker compose stop
 </code>
 
 * Enviar arquivos
-<code> docker cp <diretório> <container>:/<diretorio>
+<code> docker cp <"diretório"> <"container">:/<"diretorio">
+</code>
 
+* Acesso o container Elasticsearch
+<code>
+docker exec it elastic_elasticsearch_1 bash
+</code>
+* Acesso o container Kibana
+<code>
+docker exec it elastic_kibana_1 bash
+</code>
+* Acesso o container Logstash
+<code>
+docker exec it elastic_Logstash_1 bash
 </code>
