@@ -108,7 +108,7 @@ PS C:\Windows\system32><code>  wsl -d docker-desktop </code>
 
 
 
-DESKTOP-G2455QH:/mnt/host/c/Windows/system32# <code>  sysctl -w vm.max_map_count=262144 </code>
+DESKTOP-G2455QH:/mnt/host/c/Windows/system32# <code>sysctl -w vm.max_map_count=262144 </code>
 
 Retorna:
 
